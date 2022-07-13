@@ -1,10 +1,15 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <div class="banner">Crypto Portfolio</div>
+    <router-link to="/">Home</router-link>
+    <router-link to="/register">Register</router-link>
+    <router-link to="/login">Login</router-link>
   </nav>
   <router-view />
 </template>
+
+<script>
+</script>
 
 <style lang="scss">
 #app {
@@ -16,15 +21,44 @@
 }
 
 nav {
-  padding: 30px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    .banner {
+        padding: 5px;
+        font-size: large;
+        font-weight: bold;
+        color: #E8AA42;
+        margin-bottom: 10px;
+        @media screen and (min-width: 768px){
+            margin-bottom: 0px;
+        }
+    }
+
+    background-color: #1F4690;
+    display: flex;
+    padding: 30px;
+    font-size: 20px;
+    @media screen and (min-width: 768px){
+        flex-direction: row;
+    }
 
   a {
+    min-width: 10%;
+    margin-left: 30px;
+    overflow-wrap:normal;
     font-weight: bold;
-    color: #2c3e50;
-
+    color: white;
+    text-decoration: none;
+    padding: 5px;
     &.router-link-exact-active {
-      color: #42b983;
-    }
+            outline: none;
+            background-color: #E8AA42;
+            box-shadow: 0px 2px 2px #231955;
+            border-radius: 10px;
+            border: none;
+            color: white;
+        }
   }
 }
 </style>
