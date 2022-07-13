@@ -22,3 +22,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+Palet color : 
+https://colorhunt.co/palette/2319551f4690e8aa42ffe5b4

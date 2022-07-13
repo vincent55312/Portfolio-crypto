@@ -7,5 +7,8 @@
 <script>
 export default {
   name: "LoginView",
+  created(){
+    document.title = "Login"; 
+  }
 };
 </script>

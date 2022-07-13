@@ -38,6 +38,9 @@ export default {
       });
     },
   },
+  created(){
+    document.title = "Home";
+  }
 };
 </script>
 
