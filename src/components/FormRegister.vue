@@ -2,19 +2,15 @@
 <div class="container">
   <div class="row justify-content-center">
        <form>
-
         <div class="form-group">
             <input type="email" class="form-control" id="email" placeholder="Email">
         </div>
-                            
-                          
         <div class="form-group">
             <input type="password" class="form-control" id="password" placeholder="Password">
         </div>
-
-            <div class="d-flex flex-row align-items-center justify-content-between">
-                <button class="btn btn-primary">Create Account</button>
-            </div>
+        <div class="d-flex flex-row align-items-center justify-content-between">
+            <button class="btn btn-primary">Create Account</button>
+        </div>
     </form>
     </div>
   </div>
