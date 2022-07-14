@@ -1,19 +1,19 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-  <form>        <div class="form-group">
-              <input type="text" v-model="email" class="form-control" id="email" placeholder="Email">
-          </div>
-          <div class="form-group">
-              <input type="password" v-model="password" class="form-control" id="password" placeholder="Password">
-          </div>
-          <div class="d-flex flex-row align-items-center justify-content-between">
-            <button class="btn btn-primary" v-on:click="checkForm" type="button">Register</button>
-      </div>
-      </form>
-      </div>
+<div class="container">
+  <div class="row justify-content-center">
+<form>        <div class="form-group">
+            <input type="text" v-model="email" class="form-control" id="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <input type="password" v-model="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        <div class="d-flex flex-row align-items-center justify-content-between">
+          <button class="btn btn-primary" v-on:click="checkForm" type="button">Login</button>
     </div>
-  </template>
+    </form>
+    </div>
+  </div>
+</template>
 <script>
 import axios from "axios";
 import { createToaster } from "@meforma/vue-toaster";
@@ -26,14 +26,14 @@ import { createToaster } from "@meforma/vue-toaster";
     },
     methods: {
       checkForm: function(e) {
-          axios.post('http://localhost:81/api/user/register', {
+          axios.post('http://localhost:81/api/user/login', {
             email: this.email,
             password: this.password
           })
           .then((response) => {
               $cookies.set('token_crypto_portfolio', response.data.token);
                 const toaster = createToaster();
-                toaster.success(response.data.email + ` Account created successfully`);
+                toaster.success(`Logged successfully`);
                 this.$router.push({name:'home'});
             })
           .catch((error) => {
@@ -44,11 +44,10 @@ import { createToaster } from "@meforma/vue-toaster";
         } else {
           toaster.error(error);
         }
-        }
-          );
-        }
-    }
-  };
+    })
+  }
+}
+};
 </script>
 <style lang="scss">
 

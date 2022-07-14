@@ -19,16 +19,20 @@ export default {
 
 <style scoped lang="scss">
 .coin-container {
+
     justify-content: center;
     overflow: none;
     white-space: nowrap;
   &:hover {
     background: #FFE5B4;
+    transform: scale(1.05);
+    transition: .15s all ease-in-out;
   }
   width: 95%;
 
   @media screen and (min-width: 768px){
     width: 10%;
+    min-width: 15%;
   }
 
   border: 5px solid #1F4690;

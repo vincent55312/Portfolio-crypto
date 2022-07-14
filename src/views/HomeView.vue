@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+  <Navbar/>
 
     <WelcomeMessage class="message" msg="Welcome to your portfolio crypto" />
     <button class="buttons-refresh" v-on:click="getCoins()">
@@ -15,13 +16,17 @@
 import WelcomeMessage from "@/components/WelcomeMessage.vue";
 import axios from "axios";
 import Coin from "@/components/Coin.vue";
+import Navbar from "@/components/Navbar.vue";
+import { createToaster } from "@meforma/vue-toaster";
+
 
 export default {
   name: "HomeView",
   components: {
     Coin,
     WelcomeMessage,
-  },
+    Navbar
+},
   data() {
     return {
       coins: [],
@@ -34,7 +39,16 @@ export default {
     getCoins() {
       axios.get("http://localhost:81/api/markets").then((response) => {
         this.coins = response.data;
-        console.log(this.coins[0]);
+        const toaster = createToaster();
+        toaster.success(`Coins updated successfully`);
+      }).catch((error) => {
+        const toaster = createToaster();
+        const errorMessage = error.response.data;
+        if (errorMessage !== undefined) {
+          toaster.error(error.response.data);
+        } else {
+          toaster.error(error);
+        }
       });
     },
   },

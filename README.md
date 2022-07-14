@@ -26,3 +26,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 Palet color : 
 https://colorhunt.co/palette/2319551f4690e8aa42ffe5b4
+
+Cookies method : 
+$cookies.set('cookie_name', 'cookie_value');
+console.log($cookies.get('cookie_name'));               
