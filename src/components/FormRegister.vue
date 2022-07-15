@@ -45,8 +45,8 @@ import { createToaster } from "@meforma/vue-toaster";
           toaster.error(error);
         }
         }
-          );
-        }
+      );
+      }
     }
   };
 </script>
@@ -56,7 +56,7 @@ import { createToaster } from "@meforma/vue-toaster";
   width: 80%;
 
   @media screen and (min-width: 768px){
-    width: 30%;
+    width: 20%;
   }
 
   border: 3px solid #1F4690;

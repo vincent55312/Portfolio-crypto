@@ -11,7 +11,7 @@
   </p>
 
   <div class="container-coins">
-      <PortfolioItem @deleteItem="onItemDelete" v-for="coin in portfolio" :key="coin.id" :data="coin"></PortfolioItem>
+      <PortfolioItem @deleteItem="onItemDelete" @updateItem="onItemUpdate" v-for="coin in portfolio" :key="coin.id" :data="coin"></PortfolioItem>
   </div>
 </template>
 
@@ -104,20 +104,30 @@ export default {
         });
         
     } else {
-          const toaster = createToaster();
-          toaster.error('Incorrect input');
+        const toaster = createToaster();
+        toaster.error('Incorrect input');
       }
     },
     onItemDelete (value) {
-      let a = [];
+      let items = [];
 
       this.portfolio.forEach(item => {
         if (item.id !== value) {
-          a.push(item);
+          items.push(item);
         }
       });
-      this.portfolio = a;
-    }
+      this.portfolio = items;
+    },
+    onItemUpdate(value) {
+      let items = [];
+      this.portfolio.forEach(item => {
+        if (item.id === value.id) {
+          item.balance = value.balance;
+        } else {
+          items.push(item);
+        }
+      });
+  },
   },
   created(){
     document.title = "Portfolio"; 
@@ -125,10 +135,6 @@ export default {
 };
 </script>
 <style lang="scss">
-
-.form-control {
-    width: 20%;
-}
 
 .container-coins {
   flex-direction: column;

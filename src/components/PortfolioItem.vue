@@ -4,16 +4,17 @@
     <div class="update-icon" @click="showModal = true">
       📝
     </div>
-
+      <div class="modal" v-if="showModal">
+        <input type="text" v-model="balance">
+        <button :data.id="data.id" v-on:click="updateCoin(data.id)" class="close" @click="showModal = false">✅</button>
+      <button :data.id="data.id" class="close" @click="showModal = false">✂️</button>
+    </div>
     <div class="container image-container">
         <h3 class="crypto-name">{{ data.name }}</h3>
         <p class="balance">{{ data.balance }}</p>
     </div>
 
-      <div class="modal" v-if="showModal">
-    <input type="text">
-      <button class="close" @click="showModal = false">x</button>
-    </div>
+
   </div>
 
 </template>
@@ -25,7 +26,8 @@ import { createToaster } from "@meforma/vue-toaster";
 export default {
     data() {
     return {
-      showModal: false
+      showModal: false,
+      balance: null
     };
   },
   name: "PortfolioItem",
@@ -35,13 +37,12 @@ export default {
   methods: {
     deleteCoin: function(id) {
       axios.delete('http://localhost:81/api/user/coins/delete', {
-      headers: {
-          'x-auth-token': $cookies.get('token_crypto_portfolio')
-        },
         data :{
-          coinId: id,
-        }
-        , 
+        coinId: id,
+        },
+        headers: {
+        'x-auth-token': $cookies.get('token_crypto_portfolio')
+        },
         }).then((response) => {
           this.$emit('deleteItem', id)
           const toaster = createToaster();
@@ -57,9 +58,36 @@ export default {
           toaster.error(error);
           }}
           catch {
-              toaster.error(error);
+        const toaster = createToaster();
+        toaster.error(error);
           }
       });
+    },
+      updateCoin: function(id) {
+        axios({
+        method: 'put',
+        url: 'http://localhost:81/api/user/coins/update',
+        data: {
+          balance: this.balance,
+          coinId: id
+        },
+        headers: {
+          'x-auth-token': $cookies.get('token_crypto_portfolio')
+        },
+        }).then((res) => {
+          const toaster = createToaster();
+          toaster.success('Coin updated successfully');
+          this.$emit('updateItem', {'id':id, 'balance': res.data.balance})
+        })        
+        .catch((error) => {
+          const toaster = createToaster();
+          const errorMessage = error.response.data;
+          if (errorMessage !== undefined) {
+            toaster.error(error.response.data);
+          } else {
+            toaster.error(error);
+          }
+      })
     }
   }
 };
@@ -90,18 +118,12 @@ export default {
     &:hover {
       cursor: pointer;
     }
-    top: 0px;
-    right: 0px;  
-    position:relative;
+
     }
       .update-icon {
-    &:hover {
-      cursor: pointer;
-    }
-    top: 0px;
-    left: 0px;  
-        position:relative;
-
+          &:hover {
+            cursor: pointer;
+          }
     }
   .crypto-name {
     text-overflow: ellipsis; 
