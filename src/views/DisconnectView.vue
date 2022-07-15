@@ -2,7 +2,6 @@
 </template>
 <script>
 import { createToaster } from "@meforma/vue-toaster";
-
     export default {
     created() {
         $cookies.set('token_crypto_portfolio', null);

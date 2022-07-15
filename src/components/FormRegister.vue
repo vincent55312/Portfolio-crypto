@@ -1,19 +1,21 @@
 <template>
   <div class="container">
-    <div class="row justify-content-center">
-  <form>        <div class="form-group">
-              <input type="text" v-model="email" class="form-control" id="email" placeholder="Email">
-          </div>
-          <div class="form-group">
-              <input type="password" v-model="password" class="form-control" id="password" placeholder="Password">
-          </div>
-          <div class="d-flex flex-row align-items-center justify-content-between">
-            <button class="btn btn-primary" v-on:click="checkForm" type="button">Register</button>
-      </div>
-      </form>
-      </div>
+		<div class="row justify-content-center">
+			<form>        
+				<div class="form-group">
+					<input type="text" v-model="email" class="form-control" id="email" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<input type="password" v-model="password" class="form-control" id="password" placeholder="Password">
+				</div>
+				<div class="d-flex flex-row align-items-center justify-content-between">
+					<button class="btn btn-primary" v-on:click="checkForm" type="button">Register</button>
+				</div>
+			</form>
+		</div>
     </div>
-  </template>
+</template>
+
 <script>
 import axios from "axios";
 import { createToaster } from "@meforma/vue-toaster";
@@ -25,7 +27,7 @@ import { createToaster } from "@meforma/vue-toaster";
       };
     },
     methods: {
-      checkForm: function(e) {
+      checkForm: function() {
           axios.post('http://localhost:81/api/user/register', {
             email: this.email,
             password: this.password
@@ -39,13 +41,13 @@ import { createToaster } from "@meforma/vue-toaster";
           .catch((error) => {
         const toaster = createToaster();
         const errorMessage = error.response.data;
+
         if (errorMessage !== undefined) {
           toaster.error(error.response.data);
         } else {
           toaster.error(error);
         }
-        }
-      );
+        });
       }
     }
   };

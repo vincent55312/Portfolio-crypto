@@ -1,24 +1,23 @@
 <template>
-  <nav>
+    <nav>
     <div class="banner">Crypto Portfolio</div>
     <div class="home">
     <router-link to="/">Home</router-link>
     </div>
     <div class="loggers" v-if="token == null">
-      <router-link to="/register">Register</router-link>
-      <router-link to="/login">Login</router-link>
+        <router-link to="/register">Register</router-link>
+        <router-link to="/login">Login</router-link>
     </div>
 
     <div class="loggers" v-if="token != null">
-      <router-link to="/portfolio">Portfolio</router-link>
+        <router-link to="/portfolio">Portfolio</router-link>
     <router-link to="/disconnect">Disconnect</router-link>
     </div>
-  </nav>
+    </nav>
   <router-view />
 </template>
 
 <script>
-
 export default {
   name: "Navbar",
     data() {

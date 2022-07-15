@@ -1,15 +1,14 @@
 <template>
-  <div class="home">
-  <Navbar/>
-
-    <WelcomeMessage class="message" msg="Welcome to your portfolio crypto" />
-    <button class="buttons-refresh" v-on:click="getCoins()">
-      Refresh coins
-    </button>
-    <div class="container-coins">
-      <Coin v-for="coin in coins" :key="coin.id" :data="coin"></Coin>
+    <div class="home">
+        <Navbar/>
+        <WelcomeMessage class="message" msg="Welcome to your portfolio crypto" />
+        <button class="buttons-refresh" v-on:click="getCoins()">
+            Refresh coins
+        </button>
+        <div class="container-coins">
+            <Coin v-for="coin in coins" :key="coin.id" :data="coin"></Coin>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -18,7 +17,6 @@ import axios from "axios";
 import Coin from "@/components/Coin.vue";
 import Navbar from "@/components/Navbar.vue";
 import { createToaster } from "@meforma/vue-toaster";
-
 
 export default {
   name: "HomeView",
@@ -60,7 +58,6 @@ export default {
 
 <style lang="scss">
 .buttons-refresh {
-
   margin-top: -20px;
   width: 100px;
   height: 30px;
@@ -71,16 +68,13 @@ export default {
 }
 
 .container-coins {
-          flex-direction: column;
-
-        @media screen and (min-width: 768px){
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    @media screen and (min-width: 768px){
         flex-direction: row;
-
     }
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .message {

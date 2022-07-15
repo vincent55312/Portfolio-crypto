@@ -1,5 +1,4 @@
 <template>
-
   <router-view />
 </template>
 
@@ -19,6 +18,11 @@ nav {
     flex-direction: column;
     display: flex;
     justify-content: center;
+    background-color: #1F4690;
+    display: flex;
+    padding: 30px;
+    font-size: 20px;
+
     .banner {
         padding: 5px;
         font-size: large;
@@ -30,23 +34,19 @@ nav {
         }
     }
 
-    background-color: #1F4690;
-    display: flex;
-    padding: 30px;
-    font-size: 20px;
     @media screen and (min-width: 768px){
         flex-direction: row;
     }
 
-  a {
-    min-width: 10%;
-    margin-left: 30px;
-    overflow-wrap:normal;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-    padding: 5px;
-    &.router-link-exact-active {
+    a {
+        min-width: 10%;
+        margin-left: 30px;
+        overflow-wrap:normal;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        padding: 5px;
+        &.router-link-exact-active {
             outline: none;
             background-color: #E8AA42;
             box-shadow: 0px 2px 2px #231955;
@@ -54,7 +54,6 @@ nav {
             border: none;
             color: white;
         }
-  }
-
+    } 
 }
 </style>
