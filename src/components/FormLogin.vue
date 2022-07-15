@@ -1,19 +1,21 @@
 <template>
 <div class="container">
   <div class="row justify-content-center">
-<form>        <div class="form-group">
-            <input type="text" v-model="email" class="form-control" id="email" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <input type="password" v-model="password" class="form-control" id="password" placeholder="Password">
-        </div>
-        <div class="d-flex flex-row align-items-center justify-content-between">
-          <button class="btn btn-primary" v-on:click="checkForm" type="button">Login</button>
+<form>        
+  <div class="form-group">
+    <input type="text" v-model="email" class="form-control" id="email" placeholder="Email">
     </div>
-    </form>
+    <div class="form-group">
+    <input type="password" v-model="password" class="form-control" id="password" placeholder="Password">
     </div>
-  </div>
+    <div class="d-flex flex-row align-items-center justify-content-between">
+    <button class="btn btn-primary" v-on:click="checkForm" type="button">Login</button>
+    </div>
+  </form>
+</div>
+</div>
 </template>
+
 <script>
 import axios from "axios";
 import { createToaster } from "@meforma/vue-toaster";
